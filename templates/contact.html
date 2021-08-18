@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% include "_head.html" %}
+</head>
+
+<body>
+    <div class="page-wrapper">
+
+        <!-- Preloader -->
+        <div class="preloader"></div>
+
+        <!-- START Main Header -->
+        <header class="main-header">
+
+            <!-- Header-Upper -->
+            {% include "_header_upper.html" %}
+            <!-- END Header Upper -->
+        </header>
+        <!-- END Main Header -->
+
+        <!-- START Page Banner -->
+        <section class="page-banner">
+            <div class="container">
+                <div class="banner-content text-center">
+                    <h2>{{ page.title }}</h2>
+                    <div class="page-breadcrumb">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Mail</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- END Page Banner -->
+
+        <!-- START Contact Section -->
+        <section class="contact-section py-120 rpy-100">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-5">
+                        <div class="get-touch-left">
+                            <div class="info-box">
+                                <div class="info-icon">
+                                    <i class="icofont-google-map"></i>
+                                </div>
+                                <div class="info-details">
+                                    <p>54 Commissioner Street, JHB CBD, POSTAL CODE 2000</p>
+                                </div>
+                            </div>
+                            <div class="info-box">
+                                <div class="info-icon">
+                                    <i class="icofont-phone"></i>
+                                </div>
+                                <div class="info-details">
+                                    <a href="callto:0027786683305">+27-078-668-3305</a>
+                                </div>
+                            </div>
+                            <div class="info-box">
+                                <div class="info-icon">
+                                    <i class="icofont-email"></i>
+                                </div>
+                                <div class="info-details">
+                                    <a href="mailto:info@sarova.co.za">info@sarova.co.za</a>
+                                    <a href="mailto:support@dsarova.co.za">support@sarova.co.za</a>
+                                </div>
+                            </div>
+                            <div class="get-touch-img">
+                                <img src="assets/images/get-touch-img.png" alt="Get Touch Image" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-7">
+                        <div class="get-touch-right">
+                            <h3>Get in Touch:</h3>
+                            <div class="contact-form">
+                                <form action="/sent">
+                                    <div class="form-row">
+                                        <div class="col-12">
+                                            <input type="text" class="form-control custom-input" 
+                                                    id="name" 
+                                                    name="name" 
+                                                    value="" 
+                                                    placeholder="Name:" required
+                                            />
+                                            <label for="name"></label>
+                                        </div>
+                                        <div class="col-12">
+                                            <input type="email" class="form-control custom-input" 
+                                                    id="email" 
+                                                    name="email" 
+                                                    value="" 
+                                                    placeholder="Email:" required
+                                            />
+                                            <label for="email"></label>
+                                        </div>
+                                        <div class="col-12">
+                                            <input type="text" class="form-control custom-input" 
+                                                    id="number" 
+                                                    name="number" 
+                                                    value="" 
+                                                    placeholder="Phone:" 
+                                            />
+                                            <label for="number"></label>
+                                        </div>
+                                        <div class="col-12">
+                                            <textarea class="form-control custom-textarea" 
+                                                    id="message:" 
+                                                    name="message:" 
+                                                    rows="7" 
+                                                    placeholder="Message:" required>
+                                            </textarea>
+                                            <label for="message"></label>
+                                        </div>
+                                    </div>
+                                    <div class="text-center col-12">
+                                        <button type="submit" class="btn submit">Send Message <i class="icofont-arrow-right"></i></button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    <!--start contactmap-->
+
+    <!--End contactmap-->
+        {% include "_footer.html" %}        
+    </div>
+    <!--End pagewrapper-->
+
+    <!-- Scroll Top Button -->
+    <button class="scroll-top scroll-to-target" data-target="html"><i class="icofont-arrow-up"></i></button>
+    {% include "_scripts.html" %}
+    <script type="text/javascript">
+        $(function(){
+            $('.contact-form').on('click', 'button', function(e) {
+                e.preventDefault();
+
+                const $form = $("send-msg-whatsapp");
+                const phone = '0027786683305';
+
+                //get object i.e. {key: 'value'} of form
+
+                let data = {}
+                $form.jsonify().forEach(v=> data[v.name] = v.value)
+
+                //make the ?text = payload,
+                //-could use .filetr() here too if you dont want empty values
+                const text = [
+                    data.name,
+                    data.email,
+                    data.number,
+                    data.message
+                ].join('-') // change to what you want sep to be
+
+                // make the url
+                const action = "https://wa.me/" + phone + "?text=" + encodeURIComponent(text);
+                console.log(action)
+
+                /*
+                    $form.attr('action', action);
+                    $form.attr('target', '_blank');
+                    $form.submit();
+                */
+            });
+        });
+
+    </script>
+
+</body>
+</html>

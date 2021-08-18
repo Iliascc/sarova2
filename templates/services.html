@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% include "_head.html" %}
+<body>
+    <div class="page-wrapper">
+        <div class="preloader"></div>
+        <header class="main-header">
+            {% include "_header_upper.html" %}
+        </header>
+
+        <!-- START Page Banner -->
+        <section class="page-banner">
+            <div class="container">
+                <div class="banner-content text-center">
+                    <h2>{{ page.title }}</h2>
+                    <div class="page-breadcrumb">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Serve</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- END Page Banner -->
+
+        {% include "_services.html" %}
+
+        <!-- START Call To Action -->
+        {% include "_calltoaction.html" %}
+        <!-- END Call To Action -->
+        {% include "_footer.html" %}
+        
+    </div>
+    <!--End pagewrapper-->
+
+    <!-- Scroll Top Button -->
+    <button class="scroll-top scroll-to-target" data-target="html"><i class="icofont-arrow-up"></i></button>
+    {% include "_scripts.html" %}
+
+</body>
+</html>
